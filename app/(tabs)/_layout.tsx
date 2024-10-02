@@ -1,37 +1,35 @@
 import { Tabs } from 'expo-router';
-import React from 'react';
+import  FontAwesome from '@expo/vector-icons/FontAwesome';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function RootLayout() {
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
-      <Tabs.Screen
-        name="index"
+     <Tabs screenOptions={{
+      headerShown: false,
+      tabBarActiveTintColor: 'black'
+     }} >
+      <Tabs.Screen 
+        name='index'
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
+          title: "For You",
+          tabBarIcon: ({color}) => <FontAwesome size = {28} name="home" color={color} />
         }}
       />
-      <Tabs.Screen
-        name="explore"
+      <Tabs.Screen 
+        name='explore'
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
+          title: "Explore",
+          tabBarIcon: ({color}) => <MaterialCommunityIcons name="pokeball" size={24} color={color} /> 
         }}
       />
-    </Tabs>
-  );
+      <Tabs.Screen 
+      name='accounts'
+      options={{
+        title: "Account",
+        tabBarIcon: ({color}) => <AntDesign name="setting" size={24} color={color}/>
+        }}
+      />
+    </Tabs> 
+  ) 
 }
